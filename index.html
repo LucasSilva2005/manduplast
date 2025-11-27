@@ -1,108 +1,719 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <title>Manduplast - referência em descartáveis, Higiene e limpeza</title>
-  </head>
-  <body>
-    <!-- HEADER -->
-    <header>
-      <div class="logo">
-        <img src="/assets/logo_manduplast.png" alt="" />
-      </div>
-      <nav>
-        <ul>
-          <li><a href="#">HOME</a></li>
-          <li><a href="#">SOBRE A MANDUPLAST</a></li>
-          <li><a href="#">NOSSOS SERVIÇOS</a></li>
-          <li><a href="#">ENTRE EM CONTATO</a></li>
-        </ul>
-      </nav>
-      <a href="" class="btn-header">Solicite um Orçamento</a>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manduplast - Soluções em Plásticos Industriais</title>
+    <!-- Carrega ícones Lucide (substituindo o uso de FontAwesome/SVG) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        /* Variáveis de Cores */
+        :root {
+            --color-primary: #FFC72C; /* Amarelo (Destaque/CTA) */
+            --color-secondary: #0A3172; /* Azul Escuro (Principal/Fundo) */
+            --color-text: #333333;
+            --color-light-gray: #f9fafb; /* Cor de fundo de seção */
+            --color-white: #ffffff;
+        }
+
+        /* Reset e Base */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--color-text);
+            margin: 0;
+            background-color: var(--color-white);
+        }
+
+        /* Garantir rolagem suave para melhor UX */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Contêiner Centralizado */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-left: 1rem; /* px-4 */
+            padding-right: 1rem; /* px-4 */
+        }
+        @media (min-width: 640px) { /* sm: */
+            .container {
+                padding-left: 1.5rem; /* sm:px-6 */
+                padding-right: 1.5rem; /* sm:px-6 */
+            }
+        }
+        @media (min-width: 1024px) { /* lg: */
+            .container {
+                padding-left: 2rem; /* lg:px-8 */
+                padding-right: 2rem; /* lg:px-8 */
+            }
+        }
+
+        /* 1. HEADER (Fixo e Responsivo) */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: var(--color-secondary);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .logo-text {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700; /* font-bold */
+            color: var(--color-white);
+        }
+        
+        .nav-desktop {
+            display: none;
+        }
+        @media (min-width: 768px) { /* md:flex */
+            .nav-desktop {
+                display: flex;
+                gap: 2rem; /* space-x-8 */
+            }
+            .nav-link {
+                color: var(--color-white);
+                font-size: 1rem;
+                font-weight: 500;
+                transition: color 0.3s ease;
+            }
+            .nav-link:hover {
+                color: var(--color-primary);
+            }
+        }
+
+        /* Botão CTA Principal */
+        .cta-header-button {
+            padding: 0.5rem 1rem;
+            border-radius: 9999px; /* rounded-full */
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--color-secondary);
+            background-color: var(--color-primary);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+        }
+        .cta-header-button:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        /* Menu Mobile */
+        .mobile-menu-button {
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+            color: var(--color-white);
+            background-color: var(--color-secondary);
+            border: none;
+            cursor: pointer;
+        }
+        @media (min-width: 768px) {
+            .mobile-menu-button {
+                display: none; /* md:hidden */
+            }
+        }
+
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: var(--color-secondary);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .mobile-menu-link {
+            display: block;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--color-white);
+            transition: background-color 0.3s ease;
+        }
+        .mobile-menu-link:hover {
+            color: var(--color-primary);
+        }
+
+        /* 2. SEÇÃO HERO */
+        .hero-section {
+            background-color: var(--color-secondary);
+            color: var(--color-white);
+            padding-top: 5rem; /* py-20 */
+            padding-bottom: 5rem; /* py-20 */
+            text-align: center;
+        }
+        @media (min-width: 640px) { /* sm: */
+            .hero-section {
+                padding-top: 8rem; /* sm:py-32 */
+                padding-bottom: 8rem; /* sm:py-32 */
+            }
+        }
+        .hero-title {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 800; /* font-extrabold */
+            letter-spacing: -0.025em; /* tracking-tight */
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 640px) {
+            .hero-title {
+                font-size: 3.75rem; /* sm:text-6xl */
+            }
+        }
+        .hero-subtitle {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 300; /* font-light */
+            margin-bottom: 2rem;
+            max-width: 48rem; /* max-w-3xl */
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.8;
+        }
+        @media (min-width: 640px) {
+            .hero-subtitle {
+                font-size: 1.5rem; /* sm:text-2xl */
+            }
+        }
+        .hero-cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 2rem;
+            border: 1px solid transparent;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 9999px; /* rounded-full */
+            color: var(--color-secondary);
+            background-color: var(--color-primary);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .hero-cta-button:hover {
+            background-color: var(--color-white);
+            transform: scale(1.05);
+        }
+
+        /* 3. SEÇÃO QUEM SOMOS */
+        .about-section {
+            padding-top: 4rem; /* py-16 */
+            padding-bottom: 4rem; /* py-16 */
+            background-color: var(--color-light-gray);
+        }
+        @media (min-width: 640px) {
+            .about-section {
+                padding-top: 6rem; /* sm:py-24 */
+                padding-bottom: 6rem; /* sm:py-24 */
+            }
+        }
+        .about-grid {
+            display: grid;
+            gap: 3rem; /* lg:gap-12 */
+            align-items: center;
+        }
+        @media (min-width: 1024px) {
+            .about-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr)); /* lg:grid-cols-2 */
+            }
+        }
+        .about-title {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 800; /* font-extrabold */
+            color: var(--color-secondary);
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 640px) {
+            .about-title {
+                font-size: 2.25rem; /* sm:text-4xl */
+            }
+        }
+        .about-text {
+            margin-top: 1rem;
+            font-size: 1.125rem; /* text-lg */
+            color: #4b5563; /* gray-600 */
+        }
+        .image-container {
+            margin-top: 2.5rem; /* mt-10 */
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.25);
+            border-radius: 0.5rem; /* rounded-lg */
+            overflow: hidden;
+        }
+        @media (min-width: 1024px) {
+            .image-container {
+                margin-top: 0; /* lg:mt-0 */
+            }
+        }
+        .factory-image {
+            width: 100%;
+            height: 20rem; /* h-80 */
+            object-fit: cover;
+        }
+        
+        /* 4. SEÇÃO SERVIÇOS */
+        .services-section {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+            background-color: var(--color-white);
+            text-align: center;
+        }
+        @media (min-width: 640px) {
+            .services-section {
+                padding-top: 6rem;
+                padding-bottom: 6rem;
+            }
+        }
+        .section-tag {
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 600; /* font-semibold */
+            text-transform: uppercase;
+            letter-spacing: 0.05em; /* tracking-wider */
+            color: var(--color-primary);
+        }
+        .services-title {
+            margin-top: 0.5rem;
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 800; /* font-extrabold */
+            color: var(--color-secondary);
+        }
+        @media (min-width: 640px) {
+            .services-title {
+                font-size: 2.25rem; /* sm:text-4xl */
+            }
+        }
+        .services-subtitle {
+            margin-top: 1rem;
+            font-size: 1.25rem; /* text-xl */
+            color: #4b5563; /* gray-600 */
+        }
+        
+        /* Grid de Serviços */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 2rem; /* gap-8 */
+        }
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
+            }
+        }
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr)); /* lg:grid-cols-3 */
+            }
+        }
+
+        /* Classes personalizadas para as animações (MANTIDAS) */
+        .service-card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease, transform 0.3s ease;
+            
+            /* Estilos base do card: */
+            background-color: var(--color-light-gray);
+            padding: 2rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
+            text-align: left;
+        }
+
+        /* Estado visível: acionado pelo JavaScript */
+        .service-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Efeito Hover do cartão de serviço (MANTIDO) */
+        .service-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 0 0 4px var(--color-primary); /* Sombra e destaque Amarelo */
+            transform: translateY(-5px); /* Efeito sutil de levantar */
+        }
+        
+        .service-card i {
+            width: 2.5rem; /* w-10 */
+            height: 2.5rem; /* h-10 */
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+        .service-card h3 {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700; /* font-bold */
+            color: var(--color-secondary);
+            margin-bottom: 0.75rem;
+        }
+        .service-card p {
+            color: #4b5563; /* gray-600 */
+        }
+
+        /* CTA após serviços */
+        .cta-after-services {
+            margin-top: 3rem;
+        }
+        .cta-after-services-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid transparent;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 9999px; /* rounded-full */
+            color: var(--color-secondary);
+            background-color: var(--color-primary);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .cta-after-services-button:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-white);
+            transform: scale(1.05);
+        }
+
+        /* 5. SEÇÃO CONTATO */
+        .contact-section {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+            background-color: var(--color-light-gray);
+        }
+        @media (min-width: 640px) {
+            .contact-section {
+                padding-top: 6rem;
+                padding-bottom: 6rem;
+            }
+        }
+        .contact-form-container {
+            max-width: 32rem; /* max-w-lg */
+            margin-left: auto;
+            margin-right: auto;
+            background-color: var(--color-white);
+            padding: 2rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+        }
+        .form-group {
+            margin-bottom: 1.5rem; /* space-y-6 */
+        }
+        .form-label {
+            display: block;
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 500; /* font-medium */
+            color: #374151; /* gray-700 */
+        }
+        .form-input, .form-textarea {
+            margin-top: 0.25rem;
+            display: block;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db; /* border-gray-300 */
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* shadow-sm */
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(255, 199, 44, 0.5); /* ring-manduplast-primary */
+        }
+        .form-submit-button {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 0.75rem 1rem;
+            border: 1px solid transparent;
+            border-radius: 9999px; /* rounded-full */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 500;
+            color: var(--color-secondary);
+            background-color: var(--color-primary);
+            transition: all 0.3s ease;
+        }
+        .form-submit-button:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-white);
+            transform: scale(1.02);
+        }
+
+        /* FOOTER */
+        .footer {
+            background-color: var(--color-secondary);
+        }
+        .footer-content {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            color: var(--color-white);
+            text-align: center;
+            border-top: 1px solid var(--color-primary);
+            padding-top: 1.5rem;
+        }
+        .footer-text-sm {
+            font-size: 0.875rem;
+        }
+        .footer-text-xs {
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body class="bg-white font-sans text-gray-800">
+
+    <!-- 1. Header Fixo e Responsivo -->
+    <header id="header" class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div style="display: flex; justify-content: flex-start; align-items: center;">
+                    <img src="/assets/logo_manduplast.png" alt="">
+                    </a>
+                </div>
+
+                <!-- Menu Desktop -->
+                <nav class="nav-desktop">
+                    <a href="#home" class="nav-link">Início</a>
+                    <a href="#quem-somos" class="nav-link">Quem Somos</a>
+                    <a href="#servicos" class="nav-link">Serviços</a>
+                    <a href="#contato" class="nav-link">Contato</a>
+                </nav>
+
+                <!-- CTA e Mobile Menu (Hamburger) -->
+                <div style="display: none;" class="nav-desktop">
+                    <a href="#contato" class="cta-header-button">
+                        <i data-lucide="message-square-text" style="width: 1rem; height: 1rem; margin-right: 0.5rem;"></i>
+                        Solicite Orçamento
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="mobile-menu-button">
+                    <button id="mobile-menu-button" type="button" class="mobile-menu-button">
+                        <span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;">Abrir menu principal</span>
+                        <i data-lucide="menu" style="width: 1.5rem; height: 1.5rem;"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Escondido por padrão) -->
+        <div id="mobile-menu" class="mobile-menu" style="display: none;">
+            <nav style="padding: 0.5rem 1rem 0.75rem 1rem; display: flex; flex-direction: column; gap: 0.25rem;">
+                <a href="#home" class="mobile-menu-link">Início</a>
+                <a href="#quem-somos" class="mobile-menu-link">Quem Somos</a>
+                <a href="#servicos" class="mobile-menu-link">Serviços</a>
+                <a href="#contato" class="mobile-menu-link">Contato</a>
+                <a href="#contato" style="display: block; width: 100%; text-align: center; padding: 0.75rem 1rem; border-radius: 9999px; font-weight: 500; color: var(--color-secondary); background-color: var(--color-primary); margin-top: 0.5rem;">
+                    Solicite Orçamento
+                </a>
+            </nav>
+        </div>
     </header>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-content">
-        <h1>
-          Conheça os produtos mais indicados para realizar tudo de forma
-          profissional!
-        </h1>
-        <p>Soluções sob medida para você, com qualidade e confiança.</p>
-        <a href="#" class="btn">Saiba Mais</a>
+    <main>
+        <!-- 2. Seção Hero (Banner Principal) -->
+        <section id="home" class="hero-section">
+            <div class="container">
+                <h1 class="hero-title">
+                    Conheça os produtos mais indicados para realizar tudo de forma profissional!
+                </h1>
+                <p class="hero-subtitle">
+                    Tudo em um só lugar
+                </p>
+                <!-- Botão CTA na cor amarela, texto azul para contraste -->
+                <a href="#contato" class="hero-cta-button">
+                    Solicite um orçamento
+                </a>
+            </div>
+            <!-- DICA: Substitua o fundo da seção Hero por uma imagem de alta qualidade (background-image: url('sua-imagem.jpg')) para um visual mais impactante. -->
+        </section>
 
-        <div class="hero-info">
-          <p><strong>📦 Produtos variados</strong></p>
-          <p><strong>📞 Atendimento rápido</strong></p>
+        <!-- 3. Seção Quem Somos (About) -->
+        <section id="quem-somos" class="about-section">
+            <div class="container">
+                <div class="about-grid">
+                    <div>
+                        <h2 class="about-title">
+                            20 Anos de Excelência e Confiança
+                        </h2>
+                        <p class="about-text">
+                            Desde 2017, a Manduplast se dedica a fornecer produtos plásticos com a mais rigorosa qualidade e tecnologia. Nosso compromisso é com a inovação, sustentabilidade e, acima de tudo, a satisfação total dos nossos clientes.
+                        </p>
+                        <p class="about-text">
+                            A Manduplast é uma empresa de venda e distribuição de embalagens, descartáveis, artigos para festas, equipamentos, mercearia, escritório, produtos de higiene e limpeza para diversos segmentos. Temos mais de 300 itens para você organizar seu ambiente de forma prática e segura.
+                        </p>
+                    </div>
+                    <!-- Imagem Placeholder -->
+                    <div class="image-container">
+                        <!-- DICA: Substitua o link da imagem placeholder (abaixo) por uma foto da sua fábrica/tecnologia. -->
+                        <img class="factory-image" src="/assets/manduplast.png" alt="Vista da Fábrica da Manduplast">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Seção Serviços (Onde entra a animação) -->
+        <section id="servicos" class="services-section">
+            <div class="container">
+                <div style="margin-bottom: 3rem;">
+                    <span class="section-tag">O que fazemos</span>
+                    <h2 class="services-title">
+                        Nossos Principais Serviços
+                    </h2>
+                    <p class="services-subtitle">
+                        Qualidade e precisão em cada etapa, do pedido à entrega.
+                    </p>
+                </div>
+                
+                <!-- Grid de Serviços com Animação -->
+                <div class="services-grid">
+                    
+                    <!-- Serviço 1: Injeção Plástica -->
+                    <div class="service-card" data-delay="0">
+                        <i data-lucide="cog"></i>
+                        <h3>Suprimentos para condomínios</h3>
+                        <p>No âmbito comercial e residencial, atendemos desde produtos de limpeza e higiene até materiais de escritório..</p>
+                    </div>
+
+                    <!-- Serviço 2: Desenvolvimento de Moldes -->
+                    <div class="service-card" data-delay="100">
+                        <i data-lucide="box"></i>
+                        <h3>Lixeiras e sacos plásticos</h3>
+                        <p>Com uma variedade de sacos plásticos, com tamanho e cores diversificados que atendem vários tipos de lixeiras..</p>
+                    </div>
+
+                    <!-- Serviço 3: Montagem e Acabamento -->
+                    <div class="service-card" data-delay="200">
+                        <i data-lucide="package-check"></i>
+                        <h3>Dispensers e insumos de higiene</h3>
+                        <p>A fim de atender necessidades, com redução de custos, instalação e manutenção e otimização no fornecimento de insumos..</p>
+                    </div>
+
+                    <!-- Serviço 4: Consultoria Técnica -->
+                    <div class="service-card" data-delay="300">
+                        <i data-lucide="brain-circuit"></i>
+                        <h3>Descartáveis e insumos para festas</h3>
+                        <p>Artigos decorativos para festa, descartáveis que atendem suas necessidades em um evento seja familiar ou cooperativo..</p>
+                    </div>
+                </div>
+                
+                <!-- CTA após Serviços -->
+                <div class="cta-after-services">
+                    <a href="#contato" class="cta-after-services-button">
+                        <i data-lucide="zap" style="width: 1rem; height: 1rem; margin-right: 0.5rem;"></i>
+                        Inicie seu Projeto Conosco
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Seção Contato (Formulário Simples) -->
+        <section id="contato" class="contact-section">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <span class="section-tag">Fale Conosco</span>
+                    <h2 class="services-title">
+                        Solicite seu Orçamento
+                    </h2>
+                </div>
+                <div class="contact-form-container">
+                    <form style="display: flex; flex-direction: column;">
+                        <div class="form-group">
+                            <label for="nome" class="form-label">Nome Completo</label>
+                            <input type="text" name="nome" id="nome" required class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="email" name="email" id="email" required class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem" class="form-label">Detalhes do Projeto</label>
+                            <textarea id="mensagem" name="mensagem" rows="4" required class="form-textarea"></textarea>
+                        </div>
+                        <button type="submit" class="form-submit-button">
+                            Enviar Solicitação
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text-sm">&copy; 2025 Manduplast. Todos os direitos reservados.</p>
+                <p class="footer-text-xs">Rua Exemplo, 123 - Cidade/UF | Telefone: (00) 9999-8888</p>
+            </div>
         </div>
-      </div>
-
-      <!-- IMAGEM NA HERO -->
-      <div class="hero-image">
-        <img src="assets/luva.png" alt="Luva de limpeza" />
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section class="about">
-      <div class="about-content">
-        <!-- IMAGEM AO LADO DO TEXTO -->
-        <div class="about-image">
-          <img
-            src="assets/trabalhador.png"
-            alt="Trabalhador com máquina de limpeza"
-          />
-        </div>
-        <div class="about-text">
-          <h2>Tudo em um só lugar!</h2>
-          <p>
-            Atendemos sua empresa com produtos e serviços de qualidade. Nossa
-            missão é oferecer soluções práticas, econômicas e eficientes.
-          </p>
-          <a
-            href="#"
-            class="btn"
-            style="background: var(--amarelo); color: var(--azul-escuro)"
-            >Conhecer Produtos</a
-          >
-        </div>
-      </div>
-    </section>
-
-    <!-- CARDS -->
-    <section class="cards">
-      <div class="card">
-        <h3>Varejo</h3>
-        <p>
-          Atendimento personalizado para pequenos negócios e clientes
-          individuais.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Atacado</h3>
-        <p>
-          Fornecimento em grande escala com condições especiais para empresas.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Serviços Corporativos</h3>
-        <p>
-          Parcerias estratégicas e soluções sob medida para grandes empresas.
-        </p>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-      <p>A melhor escolha em insumos para empresas</p>
-      <ul>
-        <li>✔ Qualidade garantida</li>
-        <li>✔ Atendimento rápido</li>
-        <li>✔ Preço justo</li>
-        <li>✔ Suporte especializado</li>
-      </ul>
     </footer>
-  </body>
+
+
+    <script>
+        // Inicializa os ícones do Lucide
+        lucide.createIcons();
+
+        // 1. Lógica do Menu Mobile (Hamburger)
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            // Alterna a propriedade 'display' entre 'none' e 'block'
+            if (mobileMenu.style.display === 'block') {
+                mobileMenu.style.display = 'none';
+            } else {
+                mobileMenu.style.display = 'block';
+            }
+        });
+
+        // 2. Lógica de Animação ao Rolar (Scroll Reveal) para Serviços
+        document.addEventListener('DOMContentLoaded', () => {
+            const serviceCards = document.querySelectorAll('.service-card');
+
+            // Cria um observador de interseção
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Quando o elemento entra na tela
+                        const card = entry.target;
+                        const delay = parseInt(card.getAttribute('data-delay') || 0);
+
+                        // Aplica a classe is-visible após um pequeno atraso
+                        setTimeout(() => {
+                            card.classList.add('is-visible');
+                            observer.unobserve(card); // Para de observar após a animação
+                        }, delay);
+                    }
+                });
+            }, {
+                rootMargin: '0px',
+                threshold: 0.1 // 10% do elemento precisa estar visível
+            });
+
+            // Observa todos os cartões de serviço
+            serviceCards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+
+        // 3. Lógica para fechar o menu mobile ao clicar em um link (para evitar cliques duplos)
+        const mobileLinks = document.querySelectorAll('#mobile-menu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                // Esconde o menu mobile
+                document.getElementById('mobile-menu').style.display = 'none';
+            });
+        });
+    </script>
+</body>
 </html>
